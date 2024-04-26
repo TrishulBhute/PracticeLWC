@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Car Catalog" icon-name="standard:account">
+    <template lwc:if={accounts}>
+        <div class="slds-var-m-around_medium">
+            <template for:each={accounts} for:item="account">
+                <div class="card-spacer" key={account.Id}></br>
+                  <h1 slot="Title"> {account.Name.value} </h1>
+                  {account.Price__c.value}</br>
+                </div>
+            </template>
+        </div>
+        <template lwc:if={errors}>{errors}</template>
+    </template>
+</lightning-card>
+</template>

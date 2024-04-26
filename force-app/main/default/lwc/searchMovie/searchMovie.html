@@ -1,0 +1,54 @@
+<template>
+    <lightning-card title="Trishul Theater">
+      <lightning-layout>
+           <lightning-layout-item class="slds-size_4-of-12">
+            <lightning-combobox
+            name="type"
+            label="Type"
+            value={selectedType}
+            placeholder="Select Type"
+            options={typeOption}
+            onchange={handleChange} >
+            </lightning-combobox>
+           </lightning-layout-item>
+           <lightning-layout-item class="slds-size_4-of-12">
+            <lightning-input
+             type="search"
+             name="search"
+             label="Search"
+             placeholder="Search the content"
+             onchange={handleChange}
+             is-loading ={isLoading}
+             > </lightning-input>
+           </lightning-layout-item>
+           <lightning-layout-item class="slds-size_4-of-12">
+            <lightning-input 
+            type="number" 
+            label="Number" 
+            name="number"
+            step="1" 
+            onchange={handleChange}
+            value={pageNumber}>
+            </lightning-input>
+           </lightning-layout-item>
+      </lightning-layout>
+     </lightning-card>
+     <div>
+         <template if:true={resulTArray}>
+        <lightning-card>
+            <lightning-layout multiple-rows="true">
+            <template for:each={resulTArray} for:item="result">
+             <lightning-layout-item class="slds-size_3-of-12" key={result.imdbID}>
+               <c-movie-result-card 
+               movie-result = {result}
+               oncardclick = {selectedCard}
+               selected-card-id={selectedCardId}
+               >
+               </c-movie-result-card>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+    </lightning-card>
+    </template>
+     </div>
+</template>

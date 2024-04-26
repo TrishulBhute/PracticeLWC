@@ -1,0 +1,86 @@
+<template>
+    
+        <div class="container">
+            <div class="slds-grid slds-gutters slds-wrap justify-center">
+              <div class="slds-form-element">
+                <!-- new range -->
+                <lightning-card title="Range" class="lightning-card">
+                <label class="slds-form-element__label" for="slider-id-01">
+                <span class="slds-slider-label">
+                <span class="slds-slider-label__label">Slider Label</span>
+                <span class="slds-slider-label__range">0 - 10000000</span>
+                </span>
+                </label>
+                <div class="slds-form-element__control">
+                <div class="slds-slider">
+                <input type="range" id="slider-id-01" class="slds-slider__range" min="450000" max="10000000" step="1000000" value="2000000" />
+                <span class="slds-slider__value" aria-hidden="true">450000</span>
+                </div>
+              </div>
+            </lightning-card>
+                </div>
+              <template for:each={data} for:item="item">
+                <div class="card" key={item.id}>
+                  <img class="card-image" src={item.Car_Image_Url__c} />
+                  <div class="card-text">
+                    <span class="date">{item.Name}</span>
+                    <h2>Cars</h2>
+                  </div>
+                  <div class="card-stats" onclick={showModal} data-id={item.Id}>
+                    View Details
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+          <section
+      role="dialog"
+      tabindex="-1"
+      aria-labelledby="modal-heading-01"
+      aria-modal="true"
+      aria-describedby="modal-content-id-1"
+      class={modalClass}
+    >
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <button
+            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+            title="Close"
+            onclick={closeModal}
+          >
+            <lightning-icon
+              icon-name="utility:close"
+              alternative-text="Close Modal"
+              variant="inverse"
+              size="small"
+            >
+            </lightning-icon>
+          </button>
+          <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+            {selectedNews.title}
+          </h2>
+        </header>
+        <div
+          class="slds-modal__content slds-p-around_medium"
+          id="modal-content-id-1"
+        >
+          <img class="card-image" src={selectedNews.Car_Image_Url__c} />
+          <div>
+            <div class="card-text">Name - {selectedNews.Name}</div>
+            <!-- <div>{selectedNews.Price}</div> -->
+          </div>
+          <!-- <p class="content">
+            {selectedNews.content}
+            <a href={selectedNews.url} target="_blank">Go to source</a>
+          </p> -->
+          <!-- <template if:true={selectedNews.price}> -->
+            <div class="footer">
+              <div>Price :{selectedNews.Price__c}</div>
+            </div>
+          <!-- </template> -->
+        </div>
+      </div>
+    </section>
+    <div class={modalBackdropClass}></div>
+    
+</template>

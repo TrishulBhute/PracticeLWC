@@ -1,0 +1,27 @@
+<template>
+    <div if:true={showComponent} class="container">
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col image">
+          <span>
+            <img src={resultArray.Poster} alt="Image Not Found">
+          </span>
+        </div>
+        <div class="slds-col para">
+          <span>
+            <p><b>Title : {resultArray.Title}</b></p>
+            <p>Year : {resultArray.Year}</p>
+            <p>Rated : {resultArray.Rated}</p>
+            <p>Released : {resultArray.Released}</p>
+            <p>Runtime : {resultArray.Runtime}</p>
+            <p>Genre : {resultArray.Genre}</p>
+            <p>Director : {resultArray.Director}</p>
+            <p>Writer : {resultArray.Writer}</p>
+            <p>Actors : {resultArray.Actors}</p>
+            <p>Plot : {resultArray.Plot}</p>
+            <p>Language : {resultArray.Language}</p>
+            <p>Awards : {resultArray.Writer}</p>
+          </span>
+        </div>
+    </div>
+</div>
+</template>

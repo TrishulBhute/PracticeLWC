@@ -1,0 +1,26 @@
+<template>
+   <lightning-card title="My lightning component" icon-name="standard:account">
+       <lightning-layout vertical-align="centre">
+           <lightning-layout-item padding="around-large">
+               <lightning-formatted-text value={Name}></lightning-formatted-text>
+           </lightning-layout-item> 
+           <lightning-layout-item padding="around-large" >
+            <lightning-formatted-phone value={phone}></lightning-formatted-phone>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-large">
+            <lightning-formatted-email value={email}></lightning-formatted-email>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-large">
+            <lightning-formatted-text  value={userid}></lightning-formatted-text>
+        </lightning-layout-item>
+       </lightning-layout>
+       <lightning-layout vertical-align="centre">
+           <lightning-layout-item padding="around-small">
+               <lightning-button label="Js call" variant="brand" onclick={onChange}></lightning-button>
+           </lightning-layout-item>         
+    
+       </lightning-layout> 
+   </lightning-card>
+  
+    
+</template>

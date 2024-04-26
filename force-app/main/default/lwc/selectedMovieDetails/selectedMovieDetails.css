@@ -1,0 +1,22 @@
+.container{
+    background-color: black;
+    border-radius: 20px;
+    border: 4px solid salmon;
+}
+
+p{
+    color: aliceblue;
+    font-style: italic;
+    /* font-size: large; */
+}
+
+.image img{
+    height: 100%;
+    width:100%;
+    border-radius: 20px;
+    border: 2px solid bisque;
+    padding: 4px 4px;
+}
+.para{
+    width: 60%;
+}

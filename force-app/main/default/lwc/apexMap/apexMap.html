@@ -1,0 +1,64 @@
+<template>
+    <lightning-card title="Iterate Apex Maps in LWC" icon-name="custom:custom63">
+        <lightning-button label="Load Simple Map" onclick={handleLoadSimpleMap} slot="actions"></lightning-button>
+        <lightning-button label="Load List of Maps" onclick={handleLoadListMap} slot="actions"></lightning-button>
+        <lightning-button label="Load Map inside Map" onclick={handleNestedMap} slot="actions"></lightning-button>
+    </lightning-card>
+    <lightning-card if:true={showSimpleMapCard} title="Simple Map" icon-name="custom:custom63">
+        <lightning-layout pull-to-boundary="medium">
+            <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                <template if:true={simpleMapStr}>
+                    <div class="scroller">
+                        <pre>{simpleMapStr}</pre>
+                    </div>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                <ul if:true={simpleMap} class="scroller">
+                    <template for:each={simpleMap} for:item="map">
+                        <li key={map.key}>{map.key} : {map.value}</li>
+                    </template>
+                </ul>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+    <lightning-card if:true={showListMapCard} title="List Map" icon-name="custom:custom63">
+        <lightning-layout pull-to-boundary="medium">
+            <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                <template if:true={listOfMapStr}>
+                    <div class="scroller">
+                        <pre>{listOfMapStr}</pre>
+                    </div>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                <ul if:true={listOfMap} class="scroller">
+                    <template for:each={listOfMap} for:item="map">
+                        <li key={map.Id}>{map.key} : {map.value}</li>
+                    </template>
+                </ul>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+    <lightning-card if:true={showNestedMapCard} title="Nested Map" icon-name="custom:custom63">
+        <lightning-layout pull-to-boundary="medium">
+            <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                <template if:true={nestedMapStr}>
+                    <div class="scroller">
+                        <pre>{nestedMapStr}</pre>
+                    </div>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                <ul if:true={nestedMap} class="scroller">
+                    <template for:each={nestedMap} for:item="map">
+                        <li key={map.key}>{map.key}</li>
+                        <template for:each={map.value} for:item="innermap">
+                            <li key={innermap.key}>{innermap.key} : {innermap.value}</li>
+                        </template>
+                    </template>
+                </ul>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

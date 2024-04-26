@@ -1,0 +1,61 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card title="Company Budget" icon-name="custom:custom63">
+        <div style="padding: 10px;border-radius: 6px;">
+            <div class="slds-m-around_medium slds-scrollable--y">
+                <lightning-datatable columns={columns} 
+                    show-row-number-column row-number-offset={rowOffset}
+                    hide-checkbox-column 
+                    data={items.data} 
+                    key-field="Id" 
+                    onclick={tamount}
+                    onsave={handleSave}
+                    draft-values={draftValues}>
+                </lightning-datatable>
+
+                <lightning-button variant="brand" label="Add Row" title="Add Row" 
+                  onclick={addRow}> </lightning-button>
+            </div>
+            <!-- <label class="slds-form-element__label slds-float_right slds-var-p-around_medium"><strong>Total Amount: {total}$</strong></label> -->
+        </div>
+        <template if:true={visible}>
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_small">
+            <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+            <!-- <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true"> -->
+            <!-- <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use> -->
+            <!-- </svg> -->
+            <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Modal header</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning-input type="text" label="Budget ID" onchange={balanceId}></lightning-input><br/>
+            <lightning-input type="number" label="January" onchange={jan}></lightning-input><br/>
+            <lightning-input type="number" label="February" onchange={feb}></lightning-input><br/>
+            <lightning-input type="number" label="March" onchange={march}></lightning-input><br/>
+            <lightning-input type="number" label="April" onchange={april}></lightning-input><br/>
+            <lightning-input type="number" label="May" onchange={may}></lightning-input><br/>
+            <lightning-input type="number" label="June" onchange={jun}></lightning-input><br/>
+            <lightning-input type="number" label="July" onchange={jul}></lightning-input><br/>
+            <lightning-input type="number" label="August" onchange={aug}></lightning-input><br/>
+            <lightning-input type="number" label="September" onchange={sept}></lightning-input><br/>
+            <lightning-input type="number" label="October" onchange={oct}></lightning-input><br/>
+            <lightning-input type="number" label="November" onchange={nov}></lightning-input><br/>
+            <lightning-input type="number" label="December" onchange={dec}></lightning-input><br/>
+            <!-- <lightning-input type="text" label="Budget ID"></lightning-input> -->
+            </div>
+            <div class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={close}>Cancel</button>
+            <button class="slds-button slds-button_brand" onclick={addRow}>Save</button>
+            </div>
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+        </template>
+    </lightning-card>
+
+</template>

@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Related">
+    <lightning-accordion class="example-accordion"
+    active-section-name="Related">
+    <lightning-accordion-section name="Contact" label="Contact" >
+        <lightning-datatable 
+        key-field="id"
+        data={Contacts.data}
+        hide-checkbox-column
+        columns={columns}>
+    </lightning-datatable>
+    </lightning-accordion-section>
+
+    
+        <lightning-accordion-section name="Case" label="Case">
+            <lightning-datatable 
+            key-field="id"
+            data={Cases.data}
+            hide-checkbox-column
+            columns={caseColumn}>
+        </lightning-datatable>
+        </lightning-accordion-section>
+    </lightning-accordion>
+</lightning-card>
+</template>
