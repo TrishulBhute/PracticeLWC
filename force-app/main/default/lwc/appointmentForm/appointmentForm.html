@@ -1,0 +1,107 @@
+<template>
+    <lightning-card title="Appointment Form">
+        <div class="slds-p-around_medium">
+            <lightning-layout>
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                    <!-- contact lookup -->
+
+                    <div class="slds-p-around_medium">
+                        <template if:true={isSelected}>
+                            <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1">
+                                <abbr title="Search Contacts">
+                                    <span style="color:red">*</span> Contacts
+                                </abbr>
+                            </div>
+                            <lightning-pill  label={selectedContact.Name} onremove={handleRemove}></lightning-pill>
+                            </div>
+                        </template>
+                        <template if:false={isSelected}>
+                            <lightning-input 
+                                label="Contacts" 
+                                value={searchTerm} 
+                                onchange={handleSearchTermChange}
+                                required>
+                            </lightning-input>
+                            <template if:true={hasResults}>
+                                <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid" style="width: 47%;left: 26%;">
+                                    <template for:each={contacts} for:item="contact">
+                                        <li key={contact.Id} data-id={contact.Id} class="slds-listbox__item" onclick={handleSelect}>
+                                            <div class="slds-media slds-media_small slds-media_center">
+                                                <div class="slds-media__figure">
+                                                    <lightning-icon icon-name="standard:contact" alternative-text="Contact" size="small"></lightning-icon>
+                                                </div>
+                                                <div class="slds-media__body">
+                                                    <div class="slds-listbox__option slds-listbox__option_plain slds-media__body">{contact.Name}</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                        </template>
+                    </div>
+                   
+                </lightning-layout-item>
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                    <!-- subject -->
+                    <div class="slds-p-around_medium">
+                         <lightning-input label="Subject" value={Subject} onchange={handleInputChange} data-id="Subject" required></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout>
+                <lightning-layout-item size="6" small-device-size="6" medium-device-size="3" large-device-size="3">
+                    <!-- Appointment Date and Time -->
+                    <div class="slds-p-around_medium">
+                         <lightning-input type="date" label="Appointment Date and Time" value={date} onchange={handleInputChange} data-id="date" required></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            
+                <lightning-layout-item size="6" small-device-size="6" medium-device-size="3" large-device-size="3">
+                    <div class="slds-p-around_medium">
+                        <lightning-input type="time" label=" " value={time} onchange={handleInputChange} data-id="time"></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            <!-- </lightning-layout>
+                <lightning-layout> -->
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                    <!-- Description -->
+                    <div class="slds-p-around_medium">
+                        <lightning-input label="Description" value={Description} onchange={handleInputChange} data-id="Description" required></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout>
+            <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" large-device-size="12">
+                    <lightning-button variant="brand" label="Submit" disabled = {isDisabled} onclick={handleSubmit}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+
+             <!-- Available Slots Section -->
+            <lightning-layout>
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" large-device-size="12">
+                    <div class="slds-p-around_medium">
+                        <h3>Available Slots</h3>
+                        <template if:true={availableSlots}>
+                            <ul class="slds-list_dotted">
+                                <template for:each={availableSlots} for:item="slot">
+                                    <li key={slot.Id} class="slds-list__item">
+                                        <div>
+                                            <strong>Date:</strong> {slot.Appointment_Date__c} <br>
+                                            <strong>Start Time:</strong> {slot.Start_Time__c} <br>
+                                            <strong>End Time:</strong> {slot.End_Time__c}
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                        <template if:false={availableSlots}>
+                            <p>No available slots found.</p>
+                        </template>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>    
+        </div>
+    </lightning-card>
+</template>
